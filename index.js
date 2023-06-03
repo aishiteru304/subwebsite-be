@@ -13,20 +13,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({ limit: '10mb' }));
 
 // Middleware kiểm tra tên miền
-const allowOnlyFromDomain = (allowedDomain) => {
-    return (req, res, next) => {
-        const clientDomain = req.headers.referer;
-        if (clientDomain !== allowedDomain) {
-            res.status(403).send('Forbidden'); // Trả về lỗi 403 nếu tên miền không được phép
-        } else {
-            next(); // Cho phép tiếp tục xử lý
-        }
-    };
-};
+// const allowOnlyFromDomain = (allowedDomain) => {
+//     return (req, res, next) => {
+//         const clientDomain = req.headers.referer;
+//         if (clientDomain !== allowedDomain) {
+//             res.status(403).send('Forbidden'); // Trả về lỗi 403 nếu tên miền không được phép
+//         } else {
+//             next(); // Cho phép tiếp tục xử lý
+//         }
+//     };
+// };
 
 
-// Middleware kiểm tra tên miền
-app.use(allowOnlyFromDomain(process.env.URL_REACT));
+// // Middleware kiểm tra tên miền
+// app.use(allowOnlyFromDomain(process.env.URL_REACT));
 
 //Connect database
 mongoose.connect(process.env.MONGODB_URL)
